@@ -1,2 +1,14 @@
-<h1>DepositDepartment#details</h1>
-<p>Find me in app/views/deposit_department/details.html.erb</p>
+<h1 style="color:#999">Kind</h1>
+<h1><%= @deposit_type.kind %></h1>
+<hr>
+<h1 style="color:#999">Percent</h1>
+<h3><%= @deposit_type.percent %></h3>
+<hr>
+<h1 style="color:#999">Duration</h1>
+<h3><%= @deposit_type.deposit_duration%></h3> month
+<hr>
+<h1 style="color:#999">Max sum</h1>
+<h3><%= @deposit_type.min_sum %></h3>
+<hr>
+<h1 style="color:#999">Was Created at</h1>
+<h3><%= @deposit_type.created_at %></h3>

@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     @client.profit_per_month = params[:profit_per_month]
     @client.role = params[:role]
-    @client.profit_currency_id = params[:profit_currency_id]
+    @client.profit_currency = params[:profit_currency]
     token = Client.new_remember_token
     @client.remember_token = Client.encrypt(token)
 
@@ -53,6 +53,6 @@ class ClientsController < ApplicationController
    private
 
     def client_params
-      params.require(:client).permit(:name,:email,:address,:password,:password_confirmation,:profit_per_month,:role,:profit_currency_id)
+      params.require(:client).permit(:name,:email,:address,:password,:password_confirmation,:profit_per_month,:role,:profit_currency)
     end
 end

@@ -8,8 +8,11 @@ class DepositDepartmentController < ApplicationController
   end
 
   def create_deposit
-    currency_id = Currency.find_by_kind_name(params[:currency]).id
-    @deposit_type = DepositType.new :kind => params[:deposit_type][:kind], :min_sum => params[:min_sum], :percent => params[:percent], :deposit_duration => params[:deposit_duration], :currency_id => currency_id
+    @deposit_type = DepositType.new :min_sum => params[:min_sum],
+                                    :kind => params[:deposit_type][:kind],  
+                                    :percent => params[:percent], 
+                                    :deposit_duration => params[:deposit_duration], 
+                                    :currency => params[:currency]
 
     respond_to do |format|
       if @deposit_type.save
@@ -23,8 +26,27 @@ class DepositDepartmentController < ApplicationController
   end
 
   def details
+    @deposit_type = DepositType.find(params[:id])
   end
 
   def edit_deposit
+    @deposit_type = DepositType.find(params[:id])
   end
+
+  def update_deposit
+    @deposit_type = DepositType.find(params[:id])
+    @deposit_type.update  :kind => params[:deposit_type][:kind], 
+                          :min_sum => params[:min_sum], 
+                          :percent => params[:percent], 
+                          :deposit_duration => params[:deposit_duration], 
+                          :currency => params[:currency]
+    redirect_to deposit_index_path
+  end
+
+  def delete_deposit
+    @deposit_type = DepositType.find(params[:id])
+    @deposit_type.destroy
+    redirect_to deposit_index_path
+  end
+
 end

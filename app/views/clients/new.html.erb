@@ -21,12 +21,16 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
-
-      <%= f.label :profit_per_month %>
-      <%= number_field_tag :profit_per_month, 50000, min: 0, max: 500000 %> 
-
-        <%= f.label 'Currency of profit' %>
-        <%= select_tag(:profit_currency_id, options_for_select([['Rus', 'Ru'], ['Bel', 'Bel'], ['Euro', 'Euro'], ['Dollar', 'Dollar']])) %>
+      <table>
+      <tr>
+      <td><%= f.label :profit_per_month %></td>
+      <td><%= f.label 'Currency of profit' %></td>
+      </tr>
+      <tr>
+      <td><%= number_field_tag :profit_per_month, 50000, min: 0, max: 500000 %> 
+      <td><%= select_tag(:profit_currency, options_for_select([['RUB'], ['BYR'], ['EUR'], ['USD']])) %>
+      </tr>
+      </table>
       <hr>
       <h3>Roles</h3>
       <hr>

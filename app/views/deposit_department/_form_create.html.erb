@@ -1,13 +1,13 @@
 <%= form_for @deposit_type, url: create_deposit_type_path do |f| %>
 
 <div class="field">
-  <%= f.label 'Name' %>
+  <%= f.label 'Name Deposit' %>
   <%= f.text_field :kind %>
 </div>
 
 <div class="field">
   <%= f.label 'Currency' %>
-  <%= select_tag(:currency, options_for_select([['Rus', 'Ru'], ['Bel', 'Bel'], ['Euro', 'Euro'], ['Dollar', 'Dollar']])) %>
+  <%= select_tag(:currency, options_for_select([['RUB'], ['BYR'], ['EUR'], ['USD']])) %>
 </div>
 
 <div class="field">
@@ -21,8 +21,8 @@
 </div>
 
 <div class="field">
-  <%= f.label 'Sum' %>
-  <%= number_field_tag :min_sum, 20000, min: 0  %> денег
+  <%= f.label 'Min Sum' %>
+  <%= number_field_tag :min_sum, 20000, min: 0  %> 
 </div>
 
 <div class="create_button">

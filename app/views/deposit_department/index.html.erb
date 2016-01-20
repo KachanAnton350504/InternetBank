@@ -1,24 +1,23 @@
-<%= provide(:title, 'Deposit Department') %>
+   <%= provide(:title, 'Deposit Department') %>
 <h1> Deposit Department </h1>
 <hr>
  <% @deposit_types.each do |type|%>
  <div class="deposit_type">
-  <h3><%= type.kind %></h3>
+  <h3><%= type.kind %> </h3>
   <h3><%= type.percent %> %</h3>
   <h3><%= type.deposit_duration %> month</h3>
-  <h3><%= type.min_sum %> <%= Currency.find(type.currency_id).kind_name %></h3>
-
-  <% if current_client.role == 1 %>
+  <h3><%= type.min_sum %> <%= type.currency %></h3>
     <%= link_to 'Details', details_deposit_type_path(type) %><br/>
-    <% if !DepositDepartment.deposit_type_belongs(type) %>
+
+ <% if Rails.env.development? %>
       <%= link_to 'Edit', edit_deposit_type_path(type) %><br/>
       <%= link_to 'Destroy', delete_deposit_type_path(type), method: :delete,
                         data: { confirm: 'Are you sure, men?' } %>
-    <% end %>
   <% end %>
+  
   </div>
  <% end %>
 <hr>
-<% if current_client.role == 1%>
+<% if Rails.env.development? %>
 <%= link_to 'Add', new_deposit_type_path %>
 <% end %>

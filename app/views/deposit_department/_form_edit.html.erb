@@ -1,0 +1,32 @@
+<%= form_for @deposit_type, url: update_deposit_type_path do |f| %>
+
+<div class="field">
+  <%= f.label 'Name' %>
+  <%= f.text_field :kind %>
+</div>
+
+<div class="field">
+  <%= f.label 'Currency' %>
+  <%= select_tag(:currency, options_for_select([['Rus', 'Ru'], ['Bel', 'Bel'], ['Euro', 'Euro'], ['Dollar', 'Dollar']])) %>
+</div>
+
+<div class="field">
+  <%= f.label 'Percent' %>
+  <%= number_field_tag :percent, @deposit_type.percent , min: 0, max: 50 %> % 
+</div>
+
+<div class="field">
+  <%= f.label 'Duration' %>
+  <%= number_field_tag :deposit_duration, @deposit_type.deposit_duration , min: 0, max: 50 %> month 
+</div>
+
+<div class="field">
+  <%= f.label 'Sum' %>
+  <%= number_field_tag :min_sum, @deposit_type.min_sum , min: 0  %> денег
+</div>
+
+<div class="create_button">
+  <%= f.submit 'Update' %>
+</div>
+
+<% end %>

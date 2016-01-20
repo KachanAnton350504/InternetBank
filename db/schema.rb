@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119191542) do
+ActiveRecord::Schema.define(version: 20160120022549) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "address"
     t.integer  "profit_per_month"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "role"
-    t.integer  "profit_currency_id"
-    t.integer  "bill_rus",           default: 0
-    t.integer  "bill_bel",           default: 0
-    t.integer  "bill_euro",          default: 0
-    t.integer  "bill_dollars",       default: 0
+    t.integer  "bill_rus",         default: 0
+    t.integer  "bill_bel",         default: 0
+    t.integer  "bill_euro",        default: 0
+    t.integer  "bill_dollars",     default: 0
+    t.string   "profit_currency"
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
@@ -53,9 +53,8 @@ ActiveRecord::Schema.define(version: 20160119191542) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "deposit_duration"
+    t.string   "currency"
   end
-
-  add_index "deposit_types", ["currency_id"], name: "index_deposit_types_on_currency_id"
 
   create_table "money", force: :cascade do |t|
     t.integer  "count"
