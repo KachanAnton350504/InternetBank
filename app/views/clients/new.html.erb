@@ -1,0 +1,46 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @client do |f| %>
+
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :profit_per_month %>
+      <%= number_field_tag :profit_per_month, 50000, min: 0, max: 500000 %> 
+
+        <%= f.label 'Currency of profit' %>
+        <%= select_tag(:profit_currency_id, options_for_select([['Rus', 'Ru'], ['Bel', 'Bel'], ['Euro', 'Euro'], ['Dollar', 'Dollar']])) %>
+      <hr>
+      <h3>Roles</h3>
+      <hr>
+      <h4>client</h4>
+      <%= radio_button_tag :role, 0, true %>
+      <hr>
+      <h4>creditor</h4>
+      <%= radio_button_tag :role, 1, false %>
+      <hr>
+      <h4>deposer</h4>
+      <%= radio_button_tag :role, 2, false %>
+      <hr>
+
+      <%= f.submit "Create account", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

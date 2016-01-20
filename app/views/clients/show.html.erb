@@ -1,0 +1,50 @@
+
+<%= provide(:title, @client.name) %>
+
+<span class="label label-info"><%= Client.define_role current_client.role %></span>
+
+<div class="page-header well">
+  <h1>
+    <%= @client.name %>
+  </h1>
+</div>
+
+
+
+<table class="table table-hover table-bordered">
+ <thead>
+ <tr>
+ <th>Currency</th>
+ <th>Bill</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Rus</td>
+ <td><%= @client.bill_rus %></td>
+ </tr>
+ <tr>
+ <td>Bel</td>
+ <td><%= @client.bill_bel %></td>
+ </tr>
+ <tr>
+ <td>Euro</td>
+ <td><%= @client.bill_euro %></td>
+ </tr>
+  <tr>
+ <td>Dollars</td>
+ <td><%= @client.bill_dollars %></td>
+ </tr>
+ </tbody>
+ </table>
+
+
+
+
+
+
+
+
+<% if current_client.role == 0 or current_client.role == 2%>
+  | <%= link_to "Get credit", '#'%> |
+  <% end %>
