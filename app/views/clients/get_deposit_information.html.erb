@@ -1,2 +1,16 @@
-<h1>Clients#get_deposit_information</h1>
-<p>Find me in app/views/clients/get_deposit_information.html.erb</p>
+<h4 style="color:blue">Kind</h1>
+<h5><%= @deposit_type.kind %></h1>
+<hr>
+<h4 style="color:blue">Percent</h1>
+<h5><%= @deposit_type.percent %> %</h3>
+<hr>
+<h4 style="color:blue">Duration</h1>
+<h5><%= @deposit_type.deposit_duration%> month</h3>
+<hr>
+<h4 style="color:blue">Max sum</h1>
+<h5><%= @deposit_type.min_sum %> <%= @deposit_type.currency %></h3>
+<hr>
+<h4 style="color:blue">Was Created at</h1>
+<h5><%= @deposit_type.created_at %></h3>
+
+<%= link_to "Create deposit", checkout_deposit_path(@deposit_type) %>

@@ -1,0 +1,17 @@
+
+<% deposit_type = DepositType.find(@deposit.deposit_type_id) %>
+<h1 class="well"> Deposit information by <%= deposit_type.kind %> <h1>
+<h4>Percent</h1>
+<h5><%= deposit_type.percent %> %</h3>
+<hr>
+<h4>Duration</h1>
+<h5><%= deposit_type.deposit_duration%> month</h3>
+<hr>
+<h4>Max sum</h1>
+<h5><%= @deposit.sum %> <%= deposit_type.currency %></h3>
+<hr>
+<h4>Was Started at</h1>
+<h5><%= @deposit.created_at %></h3>
+<hr>
+<h4> Month Passed </h4>
+<h5> <%= (DateTime.now.hour*60 + DateTime.now.min) - ((@deposit.created_at.hour+3)* 60 + @deposit.created_at.min) %> </h5>

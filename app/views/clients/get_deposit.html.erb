@@ -1,2 +1,27 @@
-<h1>Clients#get_deposit</h1>
-<p>Find me in app/views/clients/get_deposit.html.erb</p>
+<h1 class="well well-small"> Deposits <h1>
+<hr>
+<h3><%= current_client.email %> </h3>
+<% count =0 %>
+<% @deposits.each do |dps| %>
+    <h1><%= dps.kind %></h1>   
+    <% case dps.currency %>
+      <% when 'RUB' %>
+      <% appropriate_bill = current_client.bill_rus%>
+      <% when 'BYR' %>
+      <% appropriate_bill = current_client.bill_bel%>
+      <% when 'EUR' %>
+      <% appropriate_bill = current_client.bill_euro%>
+      <% when 'USD' %>
+      <% appropriate_bill = current_client.bill_dollars%>
+    <%end%>
+
+    <% if appropriate_bill >= dps.min_sum %>
+    <span class="label label-success"><%= count += 1 %></span>
+    <%= link_to "Show information", get_deposit_information_path(dps)%> |
+    <%= link_to "Get", checkout_deposit_path(dps) %> 
+    <% else %>
+    <span class="label label-warning"><%= count += 1 %></span>
+    <%= link_to "Show information", get_deposit_information_path(dps)%> 
+    <% end %>
+    <hr>
+<% end %>

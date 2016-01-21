@@ -1,0 +1,19 @@
+<h3 class="well" style="text-align:center;"> Descrying query of <%= @query.client.name%> for <%= @query.deposit_type.kind%> credit </h3>
+
+    <h4><%= @query.client.name %></h4>
+    <hr>
+    <h4><%= @query.client.email %></h4>
+    <hr>
+    <h4><%= @query.client.profit_per_month %></h4>
+    <hr>
+    <h4><%= @query.deposit_type.kind %></h4>
+    <hr>
+    <h4><%= @query.deposit_type.percent %> %</h4>
+    <hr>
+    <h4><%= @query.deposit_type.deposit_duration %></h4>
+    <hr>
+    <h4><%= @query.sum %></h4>
+    <hr>
+    <%= link_to "Accept", accept_deposit_path(@query, 'yes') %> |
+    <%= link_to "Reject", accept_deposit_path(@query, 'no') %>
+

@@ -7,7 +7,11 @@ class Client < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
- 
+  
+  has_many :credits
+  has_many :deposits
+  has_many :client_messages
+
  def Client.new_remember_token
     SecureRandom.urlsafe_base64
   end

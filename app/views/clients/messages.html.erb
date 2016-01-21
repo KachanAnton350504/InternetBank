@@ -1,0 +1,7 @@
+<h1 class="well"> Client messages </h1>
+<% @messages.each do |msg| %>
+  <div class="message">
+     <h5 class="well"> <%= msg.content %> </h5>
+     <%= link_to "Delete", delete_message_path(msg), method: :delete, data: { confirm: 'Are you sure, men?' }%>
+   </div>
+<% end %>

@@ -1,2 +1,17 @@
-<h1>Clients#checkout_deposit</h1>
-<p>Find me in app/views/clients/checkout_deposit.html.erb</p>
+<h3 class="well well-small" style="text-align: center;"> Checkout deposit <%= @deposit_type.kind %> </h3>
+<h5 style="text-align: center;">Ask you to accept my query! Sincerely, <%= current_client. name%></h5>
+<%= form_for @deposit_query, url: query_deposit_path do |f| %>
+
+<%=  hidden_field_tag :deposit_type_id, @deposit_type.id %>
+<%=  hidden_field_tag :client_id, current_client.id %>
+<div class="field">
+  <%= f.label 'Sum for deposit'  %> 
+  <%= number_field_tag :sum, 1, min: 1, max: @deposit_type.min_sum %><%= @deposit_type.currency %> 
+</div>
+
+
+<div class="create_button">
+  <%= f.submit 'Send' %>
+</div>
+
+<% end %>

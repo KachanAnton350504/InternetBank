@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120022549) do
+ActiveRecord::Schema.define(version: 20160120175639) do
+
+  create_table "client_messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "client_messages", ["client_id"], name: "index_client_messages_on_client_id"
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -39,11 +48,31 @@ ActiveRecord::Schema.define(version: 20160120022549) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "deposers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "deposit_departments", force: :cascade do |t|
     t.integer  "all_deposit_profit"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "deposit_queries", force: :cascade do |t|
+    t.integer  "sum"
+    t.integer  "deposit_type_id"
+    t.integer  "client_id"
+    t.integer  "deposer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "deposit_queries", ["client_id"], name: "index_deposit_queries_on_client_id"
+  add_index "deposit_queries", ["deposer_id"], name: "index_deposit_queries_on_deposer_id"
+  add_index "deposit_queries", ["deposit_type_id"], name: "index_deposit_queries_on_deposit_type_id"
 
   create_table "deposit_types", force: :cascade do |t|
     t.string   "kind"
@@ -55,6 +84,18 @@ ActiveRecord::Schema.define(version: 20160120022549) do
     t.integer  "deposit_duration"
     t.string   "currency"
   end
+
+  create_table "deposits", force: :cascade do |t|
+    t.datetime "data_begin"
+    t.integer  "sum"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "client_id"
+    t.integer  "deposit_type_id"
+  end
+
+  add_index "deposits", ["client_id"], name: "index_deposits_on_client_id"
+  add_index "deposits", ["deposit_type_id"], name: "index_deposits_on_deposit_type_id"
 
   create_table "money", force: :cascade do |t|
     t.integer  "count"

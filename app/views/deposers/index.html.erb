@@ -1,0 +1,15 @@
+<h3 class="well" style="text-align:center;"> Queries </h3>
+<% count = 0 %>
+<%if !@queries.any? %>
+<h5 class="well"> No queries. </h5>
+<% end %>
+<% @queries.each do |query|%>
+  <div class="queries">
+    <span class="badge"><%= count += 1 %></span>
+    <h4><%= query.client.name %></h4>
+    <h4><%= query.deposit_type.kind %></h4>
+    <%= link_to "Descry", descry_deposit_path(query) %> |
+    <%= link_to "Accept", accept_deposit_path(query,'yes') %> |
+    <%= link_to "Reject", accept_deposit_path(query,'no') %>
+  </div>
+<% end %>
