@@ -8,66 +8,36 @@
     <%= @client.name %>
   </h1>
 </div>
+  
 
-
-
-<table class="table table-hover table-bordered">
- <thead>
- <tr>
- <th>Currency</th>
- <th>Bill</th>
- </tr>
- </thead>
- <tbody>
- <tr>
- <td>RUB</td>
- <td><%= @client.bill_rus %></td>
- </tr>
- <tr>
- <td>BYR</td>
- <td><%= @client.bill_bel %></td>
- </tr>
- <tr>
- <td>EUR</td>
- <td><%= @client.bill_euro %></td>
- </tr>
-  <tr>
- <td>USD</td>
- <td><%= @client.bill_dollars %></td>
- </tr>
- </tbody>
- </table>
-
-<div class="client_deposits">
+  <% if current_client.role == 1 or current_client.role == 2 %>
+     <%= render 'clients/bank_information' %>
+     <%= link_to 'Reset Bills','#' %> 
+  <% end %>
 <% @client.deposits.each do |deposit| %>
 <% deposit_type = DepositType.find(deposit.deposit_type_id) %>
-<h5><%= deposit_type.kind %></h1>
-<%= link_to 'Show more', client_deposit_information_path(@client,deposit)%>
-<hr>
 <% end %>
-</div>
-
-
   <% if current_client.role == 0 %>
-  | <%= link_to "Get Credit", '#'%> |
+    <%= render 'clients/client_information' %>  
+     <%= link_to 'Reset Bills','#' %> 
+          
+    | <%= link_to "Get Credit", '#'%> |
+    <%= link_to "Create Deposit", get_deposit_path %> |
+    <%= link_to "Messages", messages_path %> |
   <% end %>
-  <% if current_client.role == 0 %>
-  <%= link_to "Create Deposit", get_deposit_path %> |
-  <% end %>
-<% if current_client.role == 1 or current_client.role == 0 %>
-  <%= link_to "Credit maintaining", '#' %> |
+    
+  <% if current_client.role == 1 or current_client.role == 0 %>
+    <%= link_to "Credit maintaining", '#' %> |
   <% end %>
   <% if current_client.role == 2 or current_client.role == 0 %>
   <%= link_to "Deposit maintaining", deposit_index_path %> |
   <% end %>
-   <!--Буду смотреть инфу других, но скрывать, что не надо-->
-  <%= link_to "Messages", messages_path %> |
 
   <% if current_client.role == 1 %>
-  <%= link_to "Check credits", '#' %> |
+    <%= link_to "Check credits", '#' %> |
   <% else if current_client.role == 2 %>
-  <%= link_to "Check deposits", deposer_index_path %> |
-  <%end%>
+    <%= link_to "Check deposits", deposer_index_path %> |
+  <% end %>
   <% end %>
   <%= link_to "Currency bill exchange", '#'%> |
 

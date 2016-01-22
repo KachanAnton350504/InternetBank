@@ -1,5 +1,6 @@
 class DeposersController < ApplicationController
   include ClientsHelper
+  include SessionsHelper
   def index
     @deposer = Deposer.first
     @queries = @deposer.deposit_queries
@@ -12,7 +13,7 @@ class DeposersController < ApplicationController
   def accept
     @query = DepositQuery.find(params[:id])
     if params[:acceptance] == 'yes'
-    bank = TheBank.find(1)    
+    bank = TheBank.first    
     client_curr = @query.client
     case @query.deposit_type.currency
       when 'RUB'
@@ -25,7 +26,7 @@ class DeposersController < ApplicationController
         client_curr.bill_euro -= @query.sum
         bank.money_euro += @query.sum
       when 'USD'
-        client_curr.bill.dollars -= @query.sum
+        client_curr.bill_dollars -= @query.sum
         bank.money_dollars += @query.sum
     end 
     client_curr.save
@@ -38,6 +39,6 @@ class DeposersController < ApplicationController
     end
     end
     @query.destroy
-    redirect_to client_profile_path(@query.client.id)
+    redirect_to client_curr
   end
 end

@@ -56,6 +56,8 @@ Rails.application.routes.draw do
 
   get '/clients/get_deposit_information/:id', to: 'clients#get_deposit_information', as: 'get_deposit_information' 
 
+  get '/clients/deposits_client_information/:id', to: 'clients#deposits_client_information', as: 'deposits_client_information' 
+  
   get '/clients/checkout_deposit/:id', to: 'clients#checkout_deposit', as: 'checkout_deposit'
 
   post '/clients/query_deposit', to: 'clients#query_deposit', as: 'query_deposit'

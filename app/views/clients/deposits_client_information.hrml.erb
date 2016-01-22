@@ -1,0 +1,37 @@
+
+<h1 class="well" style="text-align:center;"> <%= @client.name.capitalize %> information </h1>
+<table class="table table-hover table-bordered">
+ <thead>
+ <tr>
+ <th>Currency</th>
+ <th>Bill</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Rus</td>
+ <td><%= @client.bill_rus %></td>
+ </tr>
+ <tr>
+ <td>Bel</td>
+ <td><%= @client.bill_bel %></td>
+ </tr>
+ <tr>
+ <td>Euro</td>
+ <td><%= @client.bill_euro %></td>
+ </tr>
+  <tr>
+ <td>Dollars</td>
+ <td><%= @client.bill_dollars %></td>
+ </tr>
+ </tbody>
+ </table>
+
+<div class="client_deposits">
+<% @client.deposits.each do |deposit| %>
+<% deposit_type = DepositType.find(deposit.deposit_type_id) %>
+<h5><%= deposit_type.kind %></h1>
+<%= link_to 'Show more', client_deposit_information_path(@client,deposit)%>
+<hr>
+<% end %>
+</div>
