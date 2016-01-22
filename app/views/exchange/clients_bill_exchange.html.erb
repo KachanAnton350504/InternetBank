@@ -1,0 +1,57 @@
+<h1 class="well"><%= @client.name %>'s Bill Exchange</h1>
+
+
+<table class="table table-hover table-bordered">
+ <thead>
+ <tr>
+ <th>Currency</th>
+ <th>Bill</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Rus</td>
+ <td><%= @client.bill_rus %></td>
+ </tr>
+ <tr>
+ <td>Bel</td>
+ <td><%= @client.bill_bel %></td>
+ </tr>
+ <tr>
+ <td>Euro</td>
+ <td><%= @client.bill_euro %></td>
+ </tr>
+  <tr>
+ <td>Dollars</td>
+ <td><%= @client.bill_dollars %></td>
+ </tr>
+ </tbody>
+ </table>
+
+ <%= form_tag '/exchange/apply'  do |f| %>
+
+<%= hidden_field_tag 'client_id', @client.id %>
+
+<div class="field">
+  <%= label_tag 'FROM Currency' %>
+  <%= select_tag(:from_currency, options_for_select([['RUB'], ['BYR'], ['EUR'], ['USD']])) %>
+</div>
+<h1><%= @rate %></h1>
+<div class="field">
+  <%= label_tag 'TO Currency' %>
+  <%= select_tag(:to_currency, options_for_select([['RUB'], ['BYR'], ['EUR'], ['USD']])) %>
+</div>
+
+
+<div class="field">
+  <%= label_tag 'Sum' %>
+  <%= number_field_tag :sum, 0, min: 0, max: 10000000 %> 
+</div>
+
+
+
+<div class="create_button">
+  <%= submit_tag 'Exchange' %>
+</div>
+
+<% end %>

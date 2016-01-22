@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
    
+
+
   # # # # DEPOSITORS # # # #
   get '/deposers/index', to: 'deposers#index', as: 'deposer_index'
 
@@ -79,6 +81,12 @@ Rails.application.routes.draw do
   get 'static_pages/help', to: 'static_pages#help', as: 'help'
 
   get 'static_pages/about', to: 'static_pages#about', as: 'about'
+
+  # # # # EXCHANGE # # # #
+get '/exchange/:id', to: 'exchange#clients_bill_exchange', as: 'exchange'
+
+post '/exchange/apply', to: 'exchange#apply', as: 'apply'
+# # # # # # # # # # # # # 
 
  
 end
