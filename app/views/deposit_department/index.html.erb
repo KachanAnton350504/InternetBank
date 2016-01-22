@@ -9,15 +9,15 @@
   <h3><%= type.min_sum %> <%= type.currency %></h3>
     <%= link_to 'Details', details_deposit_type_path(type) %><br/>
 
- <% if Rails.env.development? %>
+ <% if current_client.role == 2 %>
       <%= link_to 'Edit', edit_deposit_type_path(type) %><br/>
       <%= link_to 'Destroy', delete_deposit_type_path(type), method: :delete,
                         data: { confirm: 'Are you sure, men?' } %>
+      <br>
+      <%= link_to 'Add', new_deposit_type_path %>
+
   <% end %>
   
   </div>
  <% end %>
 <hr>
-<% if Rails.env.development? %>
-<%= link_to 'Add', new_deposit_type_path %>
-<% end %>
