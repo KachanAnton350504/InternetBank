@@ -20,4 +20,10 @@
   
   </div>
  <% end %>
+
+<% if current_client.role == 2 %>
+      <%= link_to 'Add', new_deposit_type_path %>
+<% end %>
+ 
+
 <hr>
