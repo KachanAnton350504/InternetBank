@@ -48,6 +48,17 @@ h2 {
   color: $lightGray;
 }
 
+h3 {
+  
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: left;
+  margin: 30px;
+  font-weight: normal;
+  color: $lightGray;
+}
+
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -171,7 +182,9 @@ input {
   @extend .error;
 }
 
-.table {
+.mytable {
+  margin: 20px;
+  font-size: 15px;
   width: 40px;
   height: 40px;
 }

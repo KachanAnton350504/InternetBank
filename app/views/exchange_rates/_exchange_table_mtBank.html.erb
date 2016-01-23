@@ -8,13 +8,11 @@ var totalRUBBYR = sum * <%= exchange_purchase('RUB','BYR') %>;
 jQuery(".totalUSDBYR").val(totalUSDBYR);
 jQuery(".totalEURBYR").val(totalEURBYR);
 jQuery(".totalRUBBYR").val(totalRUBBYR);
-jQuery(".sunm").val(sum);
+jQuery(".sum").val(sum);
 
 });
 </script>
-<table class="table ">
-    
-      <h1>MTBank</h1>
+<table class="table-striped table-bordered table">
       <tr>
         <th>Currency from</th>
         <th>Currency to</th>
@@ -28,26 +26,26 @@ jQuery(".sunm").val(sum);
       <td>BYR</td>
       <td><%= exchange_purchase('USD','BYR') %></td>
       <td><%= @sale %></td>
-      <td><input type="text" class="totalUSDBYR" name="Всего" readonly size="6" style="border: none; width: 70px;" /></td>
+      <td><input type="text" class="totalUSDBYR" name="Всего" readonly size="6" style="border: none; width: 170px;" /></td>
     </tr>
       <tr>
         <td>EUR</td>
         <td>BYR</td>
         <td><%= exchange_purchase('EUR','BYR') %></td>
         <td><%= @sale %></td>
-        <td><input type="text" class="totalEURBYR" name="Всего" readonly size="6" style="border: none; width: 70px;" /></td>
+        <td><input type="text" class="totalEURBYR" name="Всего" readonly size="6" style="border: none; width: 170px;" /></td>
       </tr>
       <tr>
         <td>RUB</td>
         <td>BYR</td>
         <td><%= exchange_purchase('RUB','BYR') %></td>
         <td><%= @sale %></td>
-        <td><input type="text" class="totalRUBBYR" name="Всего" readonly size="6" style="border: none; width: 70px;" /></td>
+        <td><input type="text" class="totalRUBBYR" name="Всего" readonly size="6" style="border: none; width: 170px;" /></td>
       </tr>
       <tr>
-        <td></td>
-        <td>Summa for convert<%= number_field 'Sum' , '1', class: 'sum' %><td><td><td>
+        <td>Summa for convert<%= number_field 'Sum' , '1', class: 'sum' %><td><td><td></td><td>
       </tr>
+      <h1>MTBank</h1>
       <%= DateTime.now %>
    
 </table>
