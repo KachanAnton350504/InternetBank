@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     @client.profit_per_month = params[:profit_per_month]
-    @client.role = 2;
+    @client.role = 0;
     @client.profit_currency = params[:profit_currency]
     token = Client.new_remember_token
     @client.remember_token = Client.encrypt(token)
