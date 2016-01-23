@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     @client.profit_per_month = params[:profit_per_month]
-    @client.role = params[:role]
+    @client.role = 2;
     @client.profit_currency = params[:profit_currency]
     token = Client.new_remember_token
     @client.remember_token = Client.encrypt(token)
@@ -124,7 +124,7 @@ class ClientsController < ApplicationController
       end
 
       deposit.touch
-      if ((DateTime.now.hour*60 + DateTime.now.min) - ((deposit.created_at.hour+3)* 60 + deposit.created_at.min) >= deposit_type.deposit_duration)
+      if ((DateTime.now.hour*60 + DateTime.now.min) - ((deposit.created_at.hour)* 60 + deposit.created_at.min) >= deposit_type.deposit_duration)
         add_message("Deposit #{deposit_type.kind} was successfully finished. Thank you, #{client.name}", client.id)
         case deposit_type.currency
         when 'RUB'

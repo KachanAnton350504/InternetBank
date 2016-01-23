@@ -1,0 +1,16 @@
+<script type="text/javascript">
+jQuery(document).keyup('.cart', function(a) {
+var price = jQuery('.Sum').val();
+var item = jQuery('.item').val();
+var total = price * item;
+jQuery(".total").val(total);
+});
+</script>
+ 
+<table class="cart">
+<%= number_field 'Sum' , '2', class: 'Sum' %>
+<input type="text" class="price" name="Цена" value="2" readonly style="border: none; width: 70px;" /><br />
+<input type="text" class="item" name="Количество" style="width: 70px;" /><br />
+ <input type="text" class="total" name="Всего" readonly size="6" style="border: none; width: 70px;" /><br />
+<input type="submit" name="submit" value="Купить" />
+</table>

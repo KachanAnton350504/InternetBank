@@ -8,7 +8,7 @@ class Client < ActiveRecord::Base
    has_secure_password
  #  validates :password, length: { minimum: 6 }
   
-  has_many :credits
+  
   has_many :deposits
   has_many :client_messages
 

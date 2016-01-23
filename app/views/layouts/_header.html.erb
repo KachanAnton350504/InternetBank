@@ -1,24 +1,19 @@
 <header class="navbar navbar-fixed-top navbar-inverse"> 
   <div class="container">
     <%= link_to "Internet Bank", root_path, id: "logo" %>
+    <%= link_to "Deposit Department", deposit_index_path, id: "logo"  %>   
+    <%= link_to "Help", help_path, id: "logo" %>
     <nav>
       <ul class="nav pull-right">
-        <li> <%= link_to "Deposit Department", deposit_index_path, class: "btn-primary"  %> </li>
-        <li><%= link_to "Credit Department", '#', class: "btn-primary"  %></li>
-        <li><%= link_to "Help", help_path, class: "btn-primary" %>
        <% if signed_in? %>
-              <li><%= link_to "Profile", client_profile_path(current_client), class: "btn-primary"%></li>
-              <li><%= link_to "Sign out", signout_path(current_client),class: "btn-primary", method: "delete" %></li>
+              <li><%= link_to "Profile", client_profile_path(current_client), id: "logo" %></li>
+              <li><%= link_to "Sign out", signout_path(current_client), id: "logo" , method: "delete" %></li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign up!", signup_path, class: "btn-primary"  %></li>
-            <li><%= link_to "Sign in", signin_path, class: "btn-primary" %></li>
+            <li><%= link_to "Sign up!", signup_path, id: "logo"  %></li>
+            <li><%= link_to "Sign in", signin_path, id: "logo" %></li>
           <% end %>
-
-
-
-
       </ul>
     </nav>
   </div>

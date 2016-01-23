@@ -2,6 +2,7 @@ Rails.application.routes.draw do
    
 
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # # # # DEPOSITORS # # # #
   get '/deposers/index', to: 'deposers#index', as: 'deposer_index'
 
@@ -87,6 +88,9 @@ get '/exchange/:id', to: 'exchange#clients_bill_exchange', as: 'exchange'
 
 post '/exchange/apply', to: 'exchange#apply', as: 'apply'
 # # # # # # # # # # # # # 
+
+get '/exchange_rates/calculator', to: 'exchange_rates#calculator', as: 'calculator'
+
 
  
 end

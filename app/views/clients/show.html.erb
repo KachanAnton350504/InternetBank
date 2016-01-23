@@ -2,7 +2,7 @@
 <%= provide(:title, @client.name) %>
 
 <span class="label label-info"><%= Client.define_role current_client.role %></span>
-<%= current_client.role %>
+
 <div class="page-header well">
   <h1>
     <%= @client.name %>
@@ -12,32 +12,27 @@
 
   <% if current_client.role == 1 or current_client.role == 2 %>
      <%= render 'clients/bank_information' %>
-     <%= link_to 'Reset Bills','#' %> 
   <% end %>
-<% @client.deposits.each do |deposit| %>
-<% deposit_type = DepositType.find(deposit.deposit_type_id) %>
-<% end %>
+  
+  <% @client.deposits.each do |deposit| %>
+    <% deposit_type = DepositType.find(deposit.deposit_type_id) %>
+  <% end %>
+  
   <% if current_client.role == 0 %>
-    <%= render 'clients/client_information' %>  
-     <%= link_to 'Reset Bills','#' %> 
-          
-    | <%= link_to "Get Credit", '#'%> |
+    <%= render 'clients/client_information' %>        
     <%= link_to "Create Deposit", get_deposit_path %> |
     <%= link_to "Messages", messages_path %> |
   <% end %>
     
-  <% if current_client.role == 1 or current_client.role == 0 %>
-    <%= link_to "Credit maintaining", '#' %> |
-  <% end %>
   <% if current_client.role == 2 or current_client.role == 0 %>
   <%= link_to "Deposit maintaining", deposit_index_path %> |
   <% end %>
 
-  <% if current_client.role == 1 %>
-    <%= link_to "Check credits", '#' %> |
-  <% else if current_client.role == 2 %>
+  <% if current_client.role == 2 %>
     <%= link_to "Check deposits", deposer_index_path %> |
   <% end %>
-  <% end %>
+
+  
+  
   <%= link_to "Currency bill exchange", exchange_path(current_client) %> |
 

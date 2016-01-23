@@ -31,17 +31,7 @@
       <td><%= select_tag(:profit_currency, options_for_select([['RUB'], ['BYR'], ['EUR'], ['USD']])) %>
       </tr>
       </table>
-      <hr>
-      <h3>Roles</h3>
-      <hr>
-      <h4>client</h4>
-      <%= radio_button_tag :role, 0, true %>
-      <hr>
-      <h4>creditor</h4>
-      <%= radio_button_tag :role, 1, false %>
-      <hr>
-      <h4>deposer</h4>
-      <%= radio_button_tag :role, 2, false %>
+     
       <hr>
 
       <%= f.submit "Create account", class: "btn btn-large btn-primary" %>

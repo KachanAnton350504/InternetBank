@@ -1,6 +1,7 @@
 class DepositDepartmentController < ApplicationController
   def index
      @deposit_types = DepositType.all
+     current_client = 3
   end
 
   def add_deposit

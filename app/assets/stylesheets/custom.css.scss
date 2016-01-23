@@ -61,9 +61,9 @@ header {
 #logo {
   float: left;
   color: $blue;
-  font-size: 2em;
+  font-size: 20px;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding: 20px;
   font-weight: bold;
   line-height: 1;
   &:hover {
@@ -169,4 +169,9 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+}
+
+.table {
+  width: 40px;
+  height: 40px;
 }
