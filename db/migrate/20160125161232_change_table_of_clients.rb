@@ -1,7 +1,6 @@
 class ChangeTableOfClients < ActiveRecord::Migration
   def change
     remove_column :clients, :address, :string
-    remove_column :clients, :adress, :string
     remove_column :clients, :profit_currency, :string
     remove_column :clients, :profit_per_month, :integer
 
