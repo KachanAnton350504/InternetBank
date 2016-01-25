@@ -1,3 +1,9 @@
+class Array
+    def swap!(a,b)
+         self[a], self[b] = self[b], self[a]
+    self
+    end
+end
 module ApplicationHelper
   def full_title(page_title)
     base_title = "Internet Bank"
@@ -9,23 +15,19 @@ module ApplicationHelper
   end
 
   def load_rates
-    @doc = Nokogiri::XML(open("https://www.mtbank.by/currxml.php"))
-    @gg = 20
+    doc = Nokogiri::XML(open("https://www.mtbank.by/currxml.php"))
+    @information = doc.xpath("//currency")
+    @cr_from = []
+    @cr_to = []
+    # @purchase = []
+    # @sale = []
+    @information.each do |inf|
+       @cr_from.push(inf.xpath("code").text)
+       @cr_to.push(inf.xpath("codeTo").text)
+    #   @purchase.push(inf.xpath("purchase").text)
+    #   @sale.push(inf.xpath("sale").text)  
+     end
+     @cr_to.swap!(0,3)
   end
-
-  def exchange_purchase(form, to)
-    information = @doc.xpath("//currency")
-    information.each do |inf|
-      currency_form = inf.xpath("code").text
-      currency_to = inf.xpath("codeTo").text
-      if currency_form == form && currency_to == to
-        @purchase = inf.xpath("purchase").text
-        @sale = inf.xpath("sale").text  
-        break
-      end
-    end
-    @purchase
-  end
-  
-  
+ 
 end

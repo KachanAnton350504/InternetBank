@@ -1,16 +1,50 @@
-<%load_rates %>
+<% load_rates %>
 <script type="text/javascript">
-jQuery(document).keyup('.sum', function(a) {
-var sum = jQuery('.sum').val();
-var totalUSDBYR = sum * <%= exchange_purchase('USD','BYR') %>;
-var totalEURBYR = sum * <%= exchange_purchase('EUR','BYR') %>;
-var totalRUBBYR = sum * <%= exchange_purchase('RUB','BYR') %>;
-jQuery(".totalUSDBYR").val(totalUSDBYR);
-jQuery(".totalEURBYR").val(totalEURBYR);
-jQuery(".totalRUBBYR").val(totalRUBBYR);
-jQuery(".sum").val(sum);
 
+var purchase = 0
+var sale = 0
+var sum = 0
+jQuery(document).keyup('.sum', function(a){
+  sum = jQuery('.sum').val();
+  for(i=1;i<4;i++){
+    get_exchange(i)
+    result = purchase * sum
+    jQuery(".result" + i).val(result);
+  }
 });
+
+function get_sale_purchase(currency_from, currency_to){
+  <%= @information.each do |inf| %>
+    if( currency_from == '<%=inf.xpath("code").text%>' && currency_to == '<%=inf.xpath("codeTo").text%>'){
+      purchase = '<%= inf.xpath("purchase").text %>'
+      sale = '<%= inf.xpath("sale").text %>'
+      return; 
+    }else{
+      purchase = 'NaN'
+      sale = 'NaN'
+    }
+  <% end %>
+}
+
+function get_exchange(id){
+  get_sale_purchase(jQuery('.currency_from' + id).val(), jQuery('.currency_to' + id).val())
+  jQuery(".exchange_purchase" + id).val(purchase); 
+  jQuery(".exchange_sale" + id).val(sale); 
+}
+
+jQuery(document).load('.currency_to', function(a) {
+  for(i=1;i<4;i++)
+    get_exchange(i);
+});
+
+jQuery(document).click('.currency_to', function(a) {
+  for(i=1;i<4;i++){
+    get_exchange(i);
+    result = purchase * sum
+    jQuery(".result" + i).val(result);
+  }
+});
+
 </script>
 <table class="table-striped table-bordered table">
       <tr>
@@ -22,28 +56,30 @@ jQuery(".sum").val(sum);
       </tr>
    
     <tr>
-      <td>USD</td>
-      <td>BYR</td>
-      <td><%= exchange_purchase('USD','BYR') %></td>
-      <td><%= @sale %></td>
-      <td><input type="text" class="totalUSDBYR" name="Всего" readonly size="6" style="border: none; width: 170px;" /></td>
+      <td><%= select_tag :f, options_for_select(@cr_from.uniq.collect{ |c| [c] }), class: "currency_from1" %></td>
+      <td><%= select_tag :t, options_for_select(@cr_to.uniq.collect{ |c| [c] }), class: "currency_to1" %></td>
+      <td><input class="exchange_purchase1"/></td>
+      <td><input class="exchange_sale1"/></td>
+      <td><input class="result1"/></td>
     </tr>
-      <tr>
-        <td>EUR</td>
-        <td>BYR</td>
-        <td><%= exchange_purchase('EUR','BYR') %></td>
-        <td><%= @sale %></td>
-        <td><input type="text" class="totalEURBYR" name="Всего" readonly size="6" style="border: none; width: 170px;" /></td>
-      </tr>
-      <tr>
-        <td>RUB</td>
-        <td>BYR</td>
-        <td><%= exchange_purchase('RUB','BYR') %></td>
-        <td><%= @sale %></td>
-        <td><input type="text" class="totalRUBBYR" name="Всего" readonly size="6" style="border: none; width: 170px;" /></td>
-      </tr>
-      <tr>
-        <td>Summa for convert<%= number_field 'Sum' , '1', class: 'sum' %><td><td><td></td><td>
+    
+    <tr>
+      <td><%= select_tag :f, options_for_select(@cr_from.swap!(0,5).uniq.collect{ |c| [c] }), class: "currency_from2" %></td>
+      <td><%= select_tag :t, options_for_select(@cr_to.uniq.collect{ |c| [c] }), class: "currency_to2" %></td>
+      <td><input class="exchange_purchase2"/></td>
+      <td><input class="exchange_sale2"/></td>
+      <td><input class="result2"/></td>
+    </tr>
+    
+    <tr>
+      <td><%= select_tag :f, options_for_select(@cr_from.uniq.swap!(0,2).collect{ |c| [c] }), class: "currency_from3" %></td>
+      <td><%= select_tag :t, options_for_select(@cr_to.uniq.collect{ |c| [c] }), class: "currency_to3" %></td>
+      <td><input class="exchange_purchase3"/></td>
+      <td><input class="exchange_sale3"/></td>
+      <td><input class="result3"/></td>
+    </tr>
+    
+      <td>Summa for convert<%= number_field 'Sum' , '1', class: 'sum' %><td><td><td></td><td>
       </tr>
       <h1>MTBank</h1>
       <%= DateTime.now %>
