@@ -14,4 +14,4 @@
 <h5><%= @deposit.created_at %></h3>
 <hr>
 <h4> Month Passed </h4>
-<h5> <%= (DateTime.now.hour*60 + DateTime.now.min) - ((@deposit.created_at.hour+3)* 60 + @deposit.created_at.min) %> </h5>
+<h5> <%= (DateTime.now.hour*60 + DateTime.now.min) - ((@deposit.created_at.hour)* 60 + @deposit.created_at.min) %> </h5>
