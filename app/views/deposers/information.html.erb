@@ -1,10 +1,7 @@
 <h3 class="well" style="text-align:center;"> Descrying query of <%= @query.client.name%> for <%= @query.deposit_type.kind%> credit </h3>
-<%= @query.client.id %>
+    <h4>Client id:<%= @query.client.id %></h4>
+    <hr>
     <h4><%= @query.client.name %></h4>
-    <hr>
-    <h4><%= @query.client.email %></h4>
-    <hr>
-    <h4><%= @query.client.profit_per_month %></h4>
     <hr>
     <h4><%= @query.deposit_type.kind %></h4>
     <hr>

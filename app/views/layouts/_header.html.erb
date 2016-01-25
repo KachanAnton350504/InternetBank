@@ -5,16 +5,14 @@
     <%= link_to "Help", help_path, id: "logo" %>
     <nav>
       <ul class="nav pull-right">
-       <% if signed_in? %>
-              <li><%= link_to "Profile", client_profile_path(current_client), id: "logo" %></li>
-              <li><%= link_to "Sign out", signout_path(current_client), id: "logo" , method: "delete" %></li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Sign up!", signup_path, id: "logo"  %></li>
-            <li><%= link_to "Sign in", signin_path, id: "logo" %></li>
-          <% end %>
+        <% if current_client %>
+          Signed in as <strong><%= current_client.name %></strong>!
+          <%= link_to "Profile", client_profile_path(current_client),id: "logo" %>
+          <%= link_to "Sign out", signout_path, id: "logo" %>
+        <% else %>
+          <%= link_to "Sign in with Facebook", "/auth/facebook", id: "logo" %>
+        <% end %>
       </ul>
     </nav>
   </div>
-</header>
+  </header>

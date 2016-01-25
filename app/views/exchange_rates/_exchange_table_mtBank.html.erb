@@ -79,9 +79,11 @@ jQuery(document).click('.currency_to', function(a) {
       <td><input class="result3"/></td>
     </tr>
     
-      <td>Summa for convert<%= number_field 'Sum' , '1', class: 'sum' %><td><td><td></td><td>
-      </tr>
-      <h1>MTBank</h1>
-      <%= DateTime.now %>
-   
+    <tr>
+      <td>Summa for convert<%= number_field 'Sum' , '1', class: 'sum' %></td>
+      <td>Update time exchange rates:</td>
+      <td><%= DateTime.now.hour %>:<%= DateTime.now.min %>:<%= DateTime.now.sec %></td>
+      <td><td>
+    </tr>
+    <h1>MTBank</h1>
 </table>

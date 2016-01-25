@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
    
- 
+    get 'auth/:provider/callback', to: 'sessions#create'
+    get 'auth/failure', to: redirect('/')
+    get 'signout', to: 'sessions#destroy', as: 'signout'
+
+    resources :sessions, only: [:create, :destroy]
+    #resource :home, only: [:show]
+
+    
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # # # # DEPOSITORS # # # #
@@ -31,11 +38,11 @@ Rails.application.routes.draw do
   delete '/deposit_department/:id', to: 'deposit_department#delete_deposit', as: "delete_deposit_type"
 
  
- get '/sessions/new', to: 'sessions#new', as: 'signin'
+  #get '/sessions/new', to: 'sessions#new', as: 'signin'
 
-  post '/sessions/create', to: 'sessions#create', as: 'create_session'
+  #post '/sessions/create', to: 'sessions#create', as: 'create_session'
 
-  delete '/sessions/destroy/:id', to: 'sessions#destroy', as: 'signout'
+  #delete '/sessions/destroy/:id', to: 'sessions#destroy', as: 'signout'
 
 
 

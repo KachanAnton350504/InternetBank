@@ -4,7 +4,9 @@ class Array
     self
     end
 end
+
 module ApplicationHelper
+  
   def full_title(page_title)
     base_title = "Internet Bank"
     if page_title.empty?
@@ -19,13 +21,9 @@ module ApplicationHelper
     @information = doc.xpath("//currency")
     @cr_from = []
     @cr_to = []
-    # @purchase = []
-    # @sale = []
-    @information.each do |inf|
+     @information.each do |inf|
        @cr_from.push(inf.xpath("code").text)
        @cr_to.push(inf.xpath("codeTo").text)
-    #   @purchase.push(inf.xpath("purchase").text)
-    #   @sale.push(inf.xpath("sale").text)  
      end
      @cr_to.swap!(0,3)
   end
